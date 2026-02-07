@@ -56,7 +56,7 @@ const HeroSection = () => {
               <Linkedin size={20} />
             </a>
             <a
-              href="mailto:mjtuplano18@gmail.com"
+              href="mailto:mjtuplano09182002@gmail.com"
               className="p-2 rounded-lg border border-border hover:border-primary hover:text-primary transition-colors"
               aria-label="Email"
             >
