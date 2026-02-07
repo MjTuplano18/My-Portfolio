@@ -31,7 +31,7 @@ const HeroSection = () => {
           <h2 className="font-heading text-3xl md:text-5xl font-bold text-gradient-animated mb-6">
             Aspiring Cloud Engineer &amp; AI Prompt Engineer
           </h2>
-          <p className="text-muted-foreground max-w-lg mb-8 leading-relaxed text-base md:text-lg">
+          <p className="text-muted-foreground max-w-lg mb-8 leading-relaxed text-base md:text-lg text-justify">
             BS Information Technology student at PUP Santa Maria with hands-on experience in backend development, cloud platforms, and AI-assisted workflows. Building the future, one project at a time.
           </p>
 

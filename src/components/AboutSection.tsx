@@ -46,13 +46,13 @@ const AboutSection = () => {
             animate={inView ? { opacity: 1, x: 0 } : {}}
             transition={{ duration: 0.6, delay: 0.2 }}
           >
-            <p className="text-muted-foreground leading-relaxed mb-4">
+            <p className="text-muted-foreground leading-relaxed mb-4 text-justify">
               I''m MJ Tuplano, a dedicated IT student with a strong academic background as a President''s and Dean''s Lister, driven by a passion for building reliable and scalable backend systems. I enjoy working behind the scenes—designing APIs, managing databases, and integrating real-world services that power modern web applications.
             </p>
-            <p className="text-muted-foreground leading-relaxed mb-4">
+            <p className="text-muted-foreground leading-relaxed mb-4 text-justify">
               My experience spans from BPO data analysis to backend-focused web development, where I''ve worked with customer databases, payment system integrations, and cloud-based tools. I''m especially passionate about AI technologies and large language models (LLMs), and I''m eager to learn how AI can enhance software systems, automate processes, and improve user experiences.
             </p>
-            <p className="text-muted-foreground leading-relaxed">
+            <p className="text-muted-foreground leading-relaxed text-justify">
               Outside of tech, I enjoy playing basketball, Mobile Legends, and watching movies, which help me stay balanced and energized. I''m currently seeking an OJT opportunity where I can further sharpen my backend development skills while continuously learning and growing in AI-driven technologies.
             </p>
           </motion.div>
