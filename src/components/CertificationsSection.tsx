@@ -30,6 +30,12 @@ const certifications = [
     provider: "Cisco",
     certs: [
       {
+        title: "Python Essentials 1",
+        issued: "Feb 9, 2026",
+        image: "/cert-cisco-python-essentials-1.png",
+        link: "https://www.credly.com/badges/0915a0fd-39c6-4c25-b365-fa9bce317e48/public_url",
+      },
+      {
         title: "Introduction to Cybersecurity",
         issued: "Apr 27, 2025",
         image: "/cert-cisco-cyber.png",
