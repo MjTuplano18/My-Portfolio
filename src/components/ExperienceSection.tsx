@@ -30,8 +30,8 @@ const ExperienceSection = () => {
                   /* Large filled dot for current/most recent role */
                   <div className="w-3 h-3 bg-foreground rounded-full" />
                 ) : (
-                  /* Small dot that scales up on hover */
-                  <div className="w-2 h-2 rounded-full border-2 border-muted-foreground/40 group-hover:border-foreground group-hover:bg-foreground group-hover:scale-125 transition-all duration-200" />
+                  /* No dot by default, small filled dot appears on hover */
+                  <div className="w-2 h-2 rounded-full scale-0 bg-foreground group-hover:scale-100 transition-transform duration-200" />
                 )}
               </div>
 
