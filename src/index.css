@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=Inter:wght@300;400;500;600;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700;800&family=Inter:wght@300;400;500;600;700&display=swap');
 
 @tailwind base;
 @tailwind components;
@@ -6,47 +6,35 @@
 
 @layer base {
   :root {
-    --background: 220 20% 6%;
-    --foreground: 0 0% 95%;
+    --background: 0 0% 100%;
+    --foreground: 0 0% 5%;
 
-    --card: 220 18% 10%;
-    --card-foreground: 0 0% 95%;
+    --card: 0 0% 100%;
+    --card-foreground: 0 0% 5%;
 
-    --popover: 220 18% 10%;
-    --popover-foreground: 0 0% 95%;
+    --popover: 0 0% 100%;
+    --popover-foreground: 0 0% 5%;
 
-    --primary: 25 95% 53%;
+    --primary: 0 0% 9%;
     --primary-foreground: 0 0% 100%;
 
-    --secondary: 220 15% 15%;
-    --secondary-foreground: 0 0% 90%;
+    --secondary: 0 0% 96%;
+    --secondary-foreground: 0 0% 9%;
 
-    --muted: 220 15% 15%;
-    --muted-foreground: 220 10% 55%;
+    --muted: 0 0% 96%;
+    --muted-foreground: 0 0% 45%;
 
-    --accent: 25 95% 53%;
-    --accent-foreground: 0 0% 100%;
+    --accent: 0 0% 96%;
+    --accent-foreground: 0 0% 9%;
 
     --destructive: 0 84.2% 60.2%;
-    --destructive-foreground: 210 40% 98%;
+    --destructive-foreground: 0 0% 98%;
 
-    --border: 220 15% 18%;
-    --input: 220 15% 18%;
-    --ring: 25 95% 53%;
+    --border: 0 0% 90%;
+    --input: 0 0% 90%;
+    --ring: 0 0% 9%;
 
-    --radius: 0.75rem;
-
-    --sidebar-background: 220 18% 8%;
-    --sidebar-foreground: 0 0% 95%;
-    --sidebar-primary: 25 95% 53%;
-    --sidebar-primary-foreground: 0 0% 100%;
-    --sidebar-accent: 220 15% 15%;
-    --sidebar-accent-foreground: 0 0% 95%;
-    --sidebar-border: 220 15% 18%;
-    --sidebar-ring: 25 95% 53%;
-
-    --gradient-accent: linear-gradient(135deg, hsl(25, 95%, 53%), hsl(35, 100%, 60%));
-    --shadow-glow: 0 0 30px hsl(25 95% 53% / 0.2);
+    --radius: 0.5rem;
   }
 }
 
@@ -59,62 +47,17 @@
     @apply bg-background text-foreground font-body antialiased;
   }
 
-  ::selection {
-    background: hsl(25 95% 53% / 0.3);
+  h1, h2, h3, h4, h5, h6 {
+    font-family: "Space Grotesk", sans-serif;
   }
 
-  ::-webkit-scrollbar {
-    width: 6px;
-  }
-  ::-webkit-scrollbar-track {
-    background: hsl(var(--background));
-  }
-  ::-webkit-scrollbar-thumb {
-    background: hsl(var(--muted-foreground));
-    border-radius: 3px;
+  ::selection {
+    background: hsl(0 0% 9% / 0.1);
   }
 }
 
 @layer utilities {
-  .text-gradient {
-    @apply bg-clip-text text-transparent;
-    background-image: linear-gradient(135deg, hsl(25, 95%, 53%), hsl(35, 100%, 60%));
-  }
-
-  .text-gradient-animated {
-    @apply bg-clip-text text-transparent;
-    background-image: linear-gradient(
-      90deg,
-      hsl(25, 95%, 53%),
-      hsl(35, 100%, 60%),
-      hsl(45, 100%, 65%),
-      hsl(35, 100%, 60%),
-      hsl(25, 95%, 53%)
-    );
-    background-size: 200% 100%;
-    animation: gradient-shift 3s ease infinite;
-  }
-
-  @keyframes gradient-shift {
-    0%, 100% {
-      background-position: 0% 50%;
-    }
-    50% {
-      background-position: 100% 50%;
-    }
-  }
-
-  .glow-border {
-    box-shadow: 0 0 20px hsl(25 95% 53% / 0.15), inset 0 0 20px hsl(25 95% 53% / 0.05);
-  }
-
-  .glass {
-    @apply backdrop-blur-md;
-    background: hsl(220 18% 10% / 0.7);
-    border: 1px solid hsl(220 15% 18% / 0.5);
-  }
-
-  .section-padding {
-    @apply py-20 md:py-28 px-4 md:px-8;
+  .section-divider {
+    @apply border-t border-border;
   }
 }
