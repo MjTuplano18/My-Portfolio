@@ -1,5 +1,5 @@
 import { motion } from "framer-motion";
-import { MapPin, BadgeCheck, Mail, Github, Linkedin } from "lucide-react";
+import { MapPin, BadgeCheck, Mail, Github, Linkedin, Download } from "lucide-react";
 import { Avatar, AvatarImage, AvatarFallback } from "@/components/ui/avatar";
 import { Button } from "@/components/ui/button";
 import { profile } from "@/data";
@@ -78,6 +78,15 @@ export default function ProfileHeader() {
                 >
                   <Linkedin className="w-4 h-4" aria-hidden="true" />
                   LinkedIn
+                </a>
+              </Button>
+              <Button variant="outline" size="sm" className="rounded-md gap-2 text-xs sm:text-sm" asChild>
+                <a
+                  href="/Mj Tuplano Resume(1).pdf"
+                  download="Mj Tuplano Resume.pdf"
+                >
+                  <Download className="w-4 h-4" aria-hidden="true" />
+                  Download CV
                 </a>
               </Button>
             </div>
