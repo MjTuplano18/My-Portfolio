@@ -86,7 +86,7 @@ export const profile: ProfileData = {
   linkedin: "www.linkedin.com/in/mj-tuplano-295a6b297",
   facebook: "facebook.com/mj.tuplano.104",
   instagram: "instagram.com/justcallme_emdzey",
-  image: "/src/assets/profile.jpg",
+  image: "/profile.jpg",
   initials: "MJ",
 };
 
