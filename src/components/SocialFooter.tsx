@@ -1,6 +1,6 @@
 import { motion } from "framer-motion";
 import { Github, Linkedin, Instagram } from "lucide-react";
-import { socialLinks } from "../data";
+import { useSocialLinks } from "../hooks/useSocialLinks";
 import { useScrollAnimation } from "../hooks/useScrollAnimation";
 
 const iconMap: Record<string, React.ComponentType<{ className?: string }>> = {
@@ -11,6 +11,7 @@ const iconMap: Record<string, React.ComponentType<{ className?: string }>> = {
 
 const SocialFooter = () => {
   const { ref, initial, animate, transition } = useScrollAnimation();
+  const { data: socialLinks } = useSocialLinks();
 
   return (
     <div ref={ref}>

@@ -1,10 +1,11 @@
 import { motion } from "framer-motion";
 import { ExternalLink } from "lucide-react";
-import { memberships } from "../data";
+import { useMemberships } from "../hooks/useMemberships";
 import { useScrollAnimation } from "../hooks/useScrollAnimation";
 
 const MembershipsSection = () => {
   const { ref, initial, animate, transition } = useScrollAnimation();
+  const { data: memberships } = useMemberships();
 
   return (
     <section id="memberships" ref={ref}>

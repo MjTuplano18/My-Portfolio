@@ -1,12 +1,13 @@
 import { motion, AnimatePresence } from "framer-motion";
 import { useState, useEffect } from "react";
-import { testimonials } from "../data";
+import { useTestimonials } from "../hooks/useTestimonials";
 import { useScrollAnimation } from "../hooks/useScrollAnimation";
 
 const AUTO_ROTATE_MS = 5000;
 
 const TestimonialsSection = () => {
   const { ref, initial, animate, transition } = useScrollAnimation();
+  const { data: testimonials } = useTestimonials();
   const [activeIndex, setActiveIndex] = useState(0);
 
   // Auto-rotate

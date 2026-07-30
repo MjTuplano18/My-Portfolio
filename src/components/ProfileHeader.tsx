@@ -2,11 +2,12 @@ import { motion } from "framer-motion";
 import { MapPin, BadgeCheck, Mail, Github, Linkedin, Download } from "lucide-react";
 import { Avatar, AvatarImage, AvatarFallback } from "@/components/ui/avatar";
 import { Button } from "@/components/ui/button";
-import { profile } from "@/data";
+import { useProfile } from "@/hooks/useProfile";
 import { useScrollAnimation } from "@/hooks/useScrollAnimation";
 
 export default function ProfileHeader() {
   const { ref, initial, animate, transition } = useScrollAnimation();
+  const { data: profile } = useProfile();
 
   return (
     <section ref={ref} aria-label="Profile header">

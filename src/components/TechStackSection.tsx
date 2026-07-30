@@ -1,11 +1,12 @@
 import { motion } from "framer-motion";
 import { Link } from "react-router-dom";
 import { ChevronRight } from "lucide-react";
-import { techStack } from "../data";
+import { useTechStack } from "../hooks/useTechStack";
 import { useScrollAnimation } from "../hooks/useScrollAnimation";
 
 const TechStackSection = () => {
   const { ref, initial, animate, transition } = useScrollAnimation();
+  const { data: techStack } = useTechStack();
 
   return (
     <section id="tech-stack" ref={ref}>

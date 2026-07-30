@@ -1,8 +1,8 @@
 import { motion } from "framer-motion";
-import { useState, useEffect, useCallback } from "react";
+import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import { ChevronRight, Award } from "lucide-react";
-import { certifications } from "../data";
+import { useCertifications } from "../hooks/useCertifications";
 import { useScrollAnimation } from "../hooks/useScrollAnimation";
 
 const ITEMS_PER_PAGE = 3;
@@ -31,12 +31,10 @@ function CertImage({ src, alt }: { src: string; alt: string }) {
 
 const CertificationsSection = () => {
   const { ref, initial, animate, transition } = useScrollAnimation();
-
-  // Calculate total pages
+  const { data: certifications } = useCertifications();
   const totalPages = Math.ceil(certifications.length / ITEMS_PER_PAGE);
   const [activePage, setActivePage] = useState(0);
 
-  // Auto-rotate
   useEffect(() => {
     const interval = setInterval(() => {
       setActivePage((prev) => (prev + 1) % totalPages);
@@ -44,7 +42,6 @@ const CertificationsSection = () => {
     return () => clearInterval(interval);
   }, [totalPages]);
 
-  // Get current page items
   const startIndex = activePage * ITEMS_PER_PAGE;
   const visibleCerts = certifications.slice(startIndex, startIndex + ITEMS_PER_PAGE);
 
@@ -66,7 +63,6 @@ const CertificationsSection = () => {
           </Link>
         </div>
 
-        {/* Certification list */}
         <div className="divide-y divide-border">
           {visibleCerts.map((cert) => (
             <a
@@ -91,7 +87,6 @@ const CertificationsSection = () => {
           ))}
         </div>
 
-        {/* Dot indicators */}
         {totalPages > 1 && (
           <div className="flex items-center justify-center gap-1.5 pt-6">
             {Array.from({ length: totalPages }).map((_, index) => (

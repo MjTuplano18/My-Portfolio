@@ -1,9 +1,10 @@
 import { motion } from "framer-motion";
-import { aboutParagraphs } from "../data";
+import { useAbout } from "../hooks/useAbout";
 import { useScrollAnimation } from "../hooks/useScrollAnimation";
 
 const AboutSection = () => {
   const { ref, initial, animate, transition } = useScrollAnimation();
+  const { data: aboutParagraphs } = useAbout();
 
   return (
     <section id="about" className="py-6 md:py-8" ref={ref}>

@@ -1,10 +1,11 @@
 import { motion } from "framer-motion";
 import { Mail, Phone, ChevronRight } from "lucide-react";
-import { profile } from "../data";
+import { useProfile } from "../hooks/useProfile";
 import { useScrollAnimation } from "../hooks/useScrollAnimation";
 
 const ContactSection = () => {
   const { ref, initial, animate, transition } = useScrollAnimation();
+  const { data: profile } = useProfile();
 
   return (
     <section id="contact" ref={ref}>

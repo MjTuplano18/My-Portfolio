@@ -8,6 +8,7 @@ import Index from "./pages/Index";
 import TechStackPage from "./pages/TechStackPage";
 import ProjectsPage from "./pages/ProjectsPage";
 import CertificationsPage from "./pages/CertificationsPage";
+import AdminRoute from "./pages/AdminRoute";
 import NotFound from "./pages/NotFound";
 
 const queryClient = new QueryClient();
@@ -24,6 +25,7 @@ const App = () => (
           <Route path="/tech-stack" element={<TechStackPage />} />
           <Route path="/projects" element={<ProjectsPage />} />
           <Route path="/certifications" element={<CertificationsPage />} />
+          <Route path="/admin" element={<AdminRoute />} />
           {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
           <Route path="*" element={<NotFound />} />
         </Routes>

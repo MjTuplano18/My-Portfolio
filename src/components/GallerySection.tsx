@@ -1,7 +1,7 @@
 import { motion } from "framer-motion";
 import { useState, useRef } from "react";
 import { ChevronLeft, ChevronRight, ImageOff } from "lucide-react";
-import { gallery } from "../data";
+import { useGallery } from "../hooks/useGallery";
 import { useScrollAnimation } from "../hooks/useScrollAnimation";
 
 function GalleryImage({ src, alt }: { src: string; alt: string }) {
@@ -28,6 +28,7 @@ function GalleryImage({ src, alt }: { src: string; alt: string }) {
 
 const GallerySection = () => {
   const { ref, initial, animate, transition } = useScrollAnimation();
+  const { data: gallery } = useGallery();
   const scrollRef = useRef<HTMLDivElement>(null);
 
   const scroll = (direction: "left" | "right") => {

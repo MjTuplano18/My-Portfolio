@@ -1,11 +1,12 @@
 import { motion } from "framer-motion";
 import { Link } from "react-router-dom";
 import { ChevronRight } from "lucide-react";
-import { projects } from "../data";
+import { useProjects } from "../hooks/useProjects";
 import { useScrollAnimation } from "../hooks/useScrollAnimation";
 
 const ProjectsSection = () => {
   const { ref, initial, animate, transition } = useScrollAnimation();
+  const { data: projects } = useProjects();
 
   return (
     <section id="projects" className="py-12 md:py-16" ref={ref}>

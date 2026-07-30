@@ -1,9 +1,12 @@
+      
+      
 import { motion } from "framer-motion";
-import { experience } from "../data";
+import { useExperience } from "../hooks/useExperience";
 import { useScrollAnimation } from "../hooks/useScrollAnimation";
 
 const ExperienceSection = () => {
   const { ref, initial, animate, transition } = useScrollAnimation();
+  const { data: experience } = useExperience();
 
   return (
     <section id="experience" ref={ref}>
