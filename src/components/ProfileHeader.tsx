@@ -19,7 +19,7 @@ export default function ProfileHeader() {
         {/* Cover/Banner Image */}
         <div className="w-full h-40 md:h-52 rounded-xl overflow-hidden">
           <img
-            src="/coverpage.jpg"
+            src={profile.cover_image || "/coverpage.jpg"}
             alt="Cover banner"
             className="w-full h-full object-cover object-top"
           />
@@ -83,7 +83,7 @@ export default function ProfileHeader() {
               </Button>
               <Button variant="outline" size="sm" className="rounded-md gap-2 text-xs sm:text-sm" asChild>
                 <a
-                  href="/Mj Tuplano Resume(1).pdf"
+                  href={profile.cv_url || "/Mj Tuplano Resume(1).pdf"}
                   download="Mj Tuplano Resume.pdf"
                 >
                   <Download className="w-4 h-4" aria-hidden="true" />
