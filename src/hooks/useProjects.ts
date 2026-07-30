@@ -3,7 +3,7 @@ import { supabase } from "@/lib/supabase";
 import { projects as fallback, Project } from "@/data";
 
 export function useProjects() {
-  const [data, setData] = useState<Project[]>(fallback);
+  const [data, setData] = useState<Project[]>([]);
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
@@ -13,6 +13,7 @@ export function useProjects() {
       .order("sort_order", { ascending: true })
       .then(({ data: rows }) => {
         if (rows && rows.length > 0) setData(rows as Project[]);
+        else setData(fallback);
       })
       .finally(() => setLoading(false));
   }, []);

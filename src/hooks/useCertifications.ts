@@ -3,7 +3,7 @@ import { supabase } from "@/lib/supabase";
 import { certifications as fallback, Certification } from "@/data";
 
 export function useCertifications() {
-  const [data, setData] = useState<Certification[]>(fallback);
+  const [data, setData] = useState<Certification[]>([]);
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
@@ -12,7 +12,12 @@ export function useCertifications() {
       .select("*")
       .order("sort_order", { ascending: true })
       .then(({ data: rows }) => {
-        if (rows && rows.length > 0) setData(rows as Certification[]);
+        // Use Supabase data if available, otherwise fall back to static data
+        if (rows && rows.length > 0) {
+          setData(rows as Certification[]);
+        } else {
+          setData(fallback);
+        }
       })
       .finally(() => setLoading(false));
   }, []);

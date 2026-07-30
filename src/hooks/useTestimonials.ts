@@ -3,7 +3,7 @@ import { supabase } from "@/lib/supabase";
 import { testimonials as fallback, Testimonial } from "@/data";
 
 export function useTestimonials() {
-  const [data, setData] = useState<Testimonial[]>(fallback);
+  const [data, setData] = useState<Testimonial[]>([]);
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
@@ -13,6 +13,7 @@ export function useTestimonials() {
       .order("sort_order", { ascending: true })
       .then(({ data: rows }) => {
         if (rows && rows.length > 0) setData(rows as Testimonial[]);
+        else setData(fallback);
       })
       .finally(() => setLoading(false));
   }, []);

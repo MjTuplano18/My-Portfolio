@@ -10,15 +10,24 @@ const TestimonialsSection = () => {
   const { data: testimonials } = useTestimonials();
   const [activeIndex, setActiveIndex] = useState(0);
 
+  // Reset index if testimonials change and index is out of bounds
+  useEffect(() => {
+    if (activeIndex >= testimonials.length) setActiveIndex(0);
+  }, [testimonials, activeIndex]);
+
   // Auto-rotate
   useEffect(() => {
+    if (testimonials.length === 0) return;
     const interval = setInterval(() => {
       setActiveIndex((prev) => (prev + 1) % testimonials.length);
     }, AUTO_ROTATE_MS);
     return () => clearInterval(interval);
-  }, []);
+  }, [testimonials.length]);
 
   const currentTestimonial = testimonials[activeIndex];
+
+  // Guard against empty array during initial load
+  if (!currentTestimonial) return null;
 
   return (
     <section id="testimonials" ref={ref}>
