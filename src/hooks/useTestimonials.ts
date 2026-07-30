@@ -3,7 +3,7 @@ import { supabase } from "@/lib/supabase";
 import { testimonials as fallback, Testimonial } from "@/data";
 
 export function useTestimonials() {
-  const [data, setData] = useState<Testimonial[]>([]);
+  const [data, setData] = useState<Testimonial[]>(fallback);
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
