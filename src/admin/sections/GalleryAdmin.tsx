@@ -5,6 +5,7 @@ import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import { Label } from "@/components/ui/label";
 import { Trash2, Plus } from "lucide-react";
+import FileUpload from "../components/FileUpload";
 
 type Row = GalleryImage & { sort_order?: number };
 
@@ -36,20 +37,35 @@ export default function GalleryAdmin() {
   };
 
   return (
-    <div className="space-y-4 max-w-xl">
+    <div className="space-y-4 max-w-2xl">
       {items.map((item, i) => (
-        <div key={i} className="flex gap-2 items-end">
-          <div className="flex-1 space-y-1">
-            <Label>Image URL (e.g. /gallery/pic1.jpg)</Label>
-            <Input value={item.src} onChange={(e) => update(i, "src", e.target.value)} />
+        <div key={i} className="border border-border rounded-lg p-4 space-y-3">
+          <div className="flex items-center justify-between">
+            <span className="text-xs text-muted-foreground font-medium">Image {i + 1}</span>
+            <Button variant="ghost" size="icon" onClick={() => setItems(items.filter((_, idx) => idx !== i))}>
+              <Trash2 className="w-4 h-4 text-red-500" />
+            </Button>
           </div>
-          <div className="flex-1 space-y-1">
-            <Label>Alt Text</Label>
-            <Input value={item.alt} onChange={(e) => update(i, "alt", e.target.value)} />
+          <div className="flex gap-3 items-start">
+            {item.src && (
+              <img src={item.src} alt={item.alt} className="w-16 h-16 rounded object-cover border border-border flex-shrink-0" />
+            )}
+            <div className="flex-1 space-y-2">
+              <div className="space-y-1">
+                <Label>Image URL</Label>
+                <Input value={item.src} onChange={(e) => update(i, "src", e.target.value)} placeholder="URL or upload" />
+              </div>
+              <FileUpload
+                bucket="gallery"
+                label="Upload Image"
+                onUploaded={(url) => update(i, "src", url)}
+              />
+              <div className="space-y-1">
+                <Label>Alt Text</Label>
+                <Input value={item.alt} onChange={(e) => update(i, "alt", e.target.value)} />
+              </div>
+            </div>
           </div>
-          <Button variant="ghost" size="icon" onClick={() => setItems(items.filter((_, idx) => idx !== i))}>
-            <Trash2 className="w-4 h-4 text-red-500" />
-          </Button>
         </div>
       ))}
       <Button variant="outline" size="sm" onClick={() => setItems([...items, { src: "", alt: "" }])}>

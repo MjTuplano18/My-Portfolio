@@ -6,6 +6,7 @@ import { Button } from "@/components/ui/button";
 import { Label } from "@/components/ui/label";
 import { Textarea } from "@/components/ui/textarea";
 import { Trash2, Plus, GripVertical } from "lucide-react";
+import FileUpload from "../components/FileUpload";
 
 type Row = Testimonial & { sort_order?: number };
 
@@ -66,6 +67,11 @@ export default function TestimonialsAdmin() {
               <div className="space-y-1 col-span-2">
                 <Label>Photo URL (e.g. /recommendation/Mr.Vince.png)</Label>
                 <Input value={item.image ?? ""} onChange={(e) => update(i, "image", e.target.value)} />
+                <FileUpload
+                  bucket="recommendations"
+                  label="Upload Photo"
+                  onUploaded={(url) => update(i, "image", url)}
+                />
               </div>
             </div>
           </div>

@@ -5,6 +5,7 @@ import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import { Label } from "@/components/ui/label";
 import { Trash2, Plus, GripVertical } from "lucide-react";
+import FileUpload from "../components/FileUpload";
 
 type Row = Certification & { sort_order?: number };
 
@@ -68,6 +69,11 @@ export default function CertsAdmin() {
             <div className="space-y-1 col-span-2">
               <Label>Image URL (e.g. /cert-aws-cloud.png)</Label>
               <Input value={item.image} onChange={(e) => update(i, "image", e.target.value)} />
+              <FileUpload
+                bucket="certifications"
+                label="Upload Badge Image"
+                onUploaded={(url) => update(i, "image", url)}
+              />
             </div>
           </div>
         </div>
