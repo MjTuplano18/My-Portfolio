@@ -29,10 +29,12 @@ export default function GalleryAdmin() {
   const handleSave = async () => {
     setSaving(true);
     setMsg("");
-    await supabase.from("gallery").delete().neq("src", "");
-    const rows = items.map((item, i) => ({ ...item, sort_order: i }));
+    await supabase.from("gallery").delete().gte("sort_order", -1);
+    const rows = items
+      .filter((item) => item.src.trim() !== "")
+      .map((item, i) => ({ ...item, sort_order: i }));
     const { error } = await supabase.from("gallery").insert(rows);
-    setMsg(error ? "Error saving." : "Saved!");
+    setMsg(error ? `Error: ${error.message}` : "Saved!");
     setSaving(false);
   };
 

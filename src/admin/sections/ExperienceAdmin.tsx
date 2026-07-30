@@ -30,14 +30,12 @@ export default function ExperienceAdmin() {
   const handleSave = async () => {
     setSaving(true);
     setMsg("");
-    await supabase.from("experience").delete().neq("id", "");
-    const rows = items.map((item, i) => ({
-      ...item,
-      id: item.id || crypto.randomUUID(),
-      sort_order: i,
-    }));
+    await supabase.from("experience").delete().gte("sort_order", -1);
+    const rows = items
+      .filter((item) => item.role.trim() !== "")
+      .map((item, i) => ({ ...item, id: item.id || crypto.randomUUID(), sort_order: i }));
     const { error } = await supabase.from("experience").insert(rows);
-    setMsg(error ? "Error saving." : "Saved!");
+    setMsg(error ? `Error: ${error.message}` : "Saved!");
     setSaving(false);
   };
 

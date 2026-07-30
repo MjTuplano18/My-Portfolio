@@ -28,10 +28,12 @@ export default function MembershipsAdmin() {
   const handleSave = async () => {
     setSaving(true);
     setMsg("");
-    await supabase.from("memberships").delete().neq("name", "");
-    const rows = items.map((item, i) => ({ ...item, sort_order: i }));
+    await supabase.from("memberships").delete().gte("sort_order", -1);
+    const rows = items
+      .filter((item) => item.name.trim() !== "")
+      .map((item, i) => ({ ...item, sort_order: i }));
     const { error } = await supabase.from("memberships").insert(rows);
-    setMsg(error ? "Error saving." : "Saved!");
+    setMsg(error ? `Error: ${error.message}` : "Saved!");
     setSaving(false);
   };
 

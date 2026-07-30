@@ -30,10 +30,12 @@ export default function TestimonialsAdmin() {
   const handleSave = async () => {
     setSaving(true);
     setMsg("");
-    await supabase.from("testimonials").delete().neq("id", "");
-    const rows = items.map((item, i) => ({ ...item, id: item.id || crypto.randomUUID(), sort_order: i }));
+    await supabase.from("testimonials").delete().gte("sort_order", -1);
+    const rows = items
+      .filter((item) => item.name.trim() !== "")
+      .map((item, i) => ({ ...item, id: item.id || crypto.randomUUID(), sort_order: i }));
     const { error } = await supabase.from("testimonials").insert(rows);
-    setMsg(error ? "Error saving." : "Saved!");
+    setMsg(error ? `Error: ${error.message}` : "Saved!");
     setSaving(false);
   };
 

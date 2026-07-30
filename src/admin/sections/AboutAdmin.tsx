@@ -19,10 +19,12 @@ export default function AboutAdmin() {
   const handleSave = async () => {
     setSaving(true);
     setMsg("");
-    await supabase.from("about_paragraphs").delete().neq("id", 0);
-    const rows = paragraphs.map((content, i) => ({ content, sort_order: i }));
+    await supabase.from("about_paragraphs").delete().gte("sort_order", -1);
+    const rows = paragraphs
+      .filter((p) => p.trim() !== "")
+      .map((content, i) => ({ content, sort_order: i }));
     const { error } = await supabase.from("about_paragraphs").insert(rows);
-    setMsg(error ? "Error saving." : "Saved!");
+    setMsg(error ? `Error: ${error.message}` : "Saved!");
     setSaving(false);
   };
 

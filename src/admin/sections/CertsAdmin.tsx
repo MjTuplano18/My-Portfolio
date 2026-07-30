@@ -29,10 +29,25 @@ export default function CertsAdmin() {
   const handleSave = async () => {
     setSaving(true);
     setMsg("");
-    await supabase.from("certifications").delete().neq("id", "");
-    const rows = items.map((item, i) => ({ ...item, id: item.id || crypto.randomUUID(), sort_order: i }));
+    // Delete all existing rows
+    const { error: delError } = await supabase.from("certifications").delete().gte("sort_order", -1);
+    if (delError) {
+      // fallback delete approach
+      await supabase.from("certifications").delete().neq("id", "KEEP_NONE");
+    }
+    const rows = items
+      .filter((item) => item.title.trim() !== "")
+      .map((item, i) => ({
+        id: item.id || crypto.randomUUID(),
+        title: item.title,
+        issuer: item.issuer,
+        date: item.date,
+        url: item.url,
+        image: item.image,
+        sort_order: i,
+      }));
     const { error } = await supabase.from("certifications").insert(rows);
-    setMsg(error ? "Error saving." : "Saved!");
+    setMsg(error ? `Error: ${error.message}` : "Saved!");
     setSaving(false);
   };
 

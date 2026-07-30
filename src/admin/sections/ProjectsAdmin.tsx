@@ -28,10 +28,12 @@ export default function ProjectsAdmin() {
   const handleSave = async () => {
     setSaving(true);
     setMsg("");
-    await supabase.from("projects").delete().neq("id", "");
-    const rows = items.map((item, i) => ({ ...item, id: item.id || crypto.randomUUID(), sort_order: i }));
+    await supabase.from("projects").delete().gte("sort_order", -1);
+    const rows = items
+      .filter((item) => item.title.trim() !== "")
+      .map((item, i) => ({ ...item, id: item.id || crypto.randomUUID(), sort_order: i }));
     const { error } = await supabase.from("projects").insert(rows);
-    setMsg(error ? "Error saving." : "Saved!");
+    setMsg(error ? `Error: ${error.message}` : "Saved!");
     setSaving(false);
   };
 
